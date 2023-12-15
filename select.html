@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Your other head content here -->
+</head>
+<body>
+
+<!-- Your existing HTML code -->
+<section class="contact-section" style="padding-top:50px;" id="predict1">
+    <div class="container">
+        <div class="title-box centred" >
+            <div class="sec-title">Upload an Image to Make a Prediction</div>
+        </div>
+        <form class="login100-form validate-form" action="/predict" method="post" enctype="multipart/form-data">
+            <!-- Your form elements -->
+            <div class="row" style=" width: 35%; margin: auto; padding: 15px;" >
+                <div class="column" >
+                    <div class="form-check form-check-inline">
+                        <p style="font-weight: bold; color: black;">Select Model : </p>
+                    </div>   
+                </div>
+                <div class="column" >
+                    <div class="form-check form-check-inline">
+                        <select name="select_model" id="selected_model">
+                            <option value='hyperModel' >Hyperparameter Tuning Model  </option>
+                            <option value='LRSModel'   >Learning Rate Scheduler Model    </option>
+                        </select>
+                    </div>   
+                </div>
+            </div>
+            <img id="image-preview" alt="image preview" src="#" style="width: 35%;"/>
+            <div class="container-login100-form-btn">
+                <div class="wrap-input100 validate-input" data-validate="Image file is required" id="input">
+                    <input class="input100" id="image-source" name="file" onchange="previewImage();" type="file"
+                        alt="Input Image" accept="image/jpeg,image/jpg,image/png">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-file" aria-hidden="true"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="container-login100-form-btn">
+                <button class="login100-form-btn" type="submit">
+                    Execute
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- form-section end -->
+
+<script>
+    function previewImage() {
+        var preview = document.querySelector('#image-preview');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "";
+        }
+    }
+</script>
+
+</body>
+</html>
